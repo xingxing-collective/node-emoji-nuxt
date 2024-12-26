@@ -8,26 +8,24 @@ export default defineNuxtModule({
   setup(_options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
 
-    const runtimeDir = resolve('runtime')
-
     addPlugin({
-      src: resolve(runtimeDir, 'plugin.ts'),
+      src: resolve('./runtime/plugins'),
     })
 
-    nuxt.options.alias['#emoji'] = resolve(runtimeDir, 'composables/emoji')
+    nuxt.options.alias['#emoji'] = resolve('./runtime')
 
     const composables = [{
       name: 'useEmoji',
       as: 'useEmoji',
-      from: resolve(runtimeDir, 'composables/emoji'),
+      from: resolve('./runtime/composables/emoji'),
     }, {
       name: 'useEmojify',
       as: 'useEmojify',
-      from: resolve(runtimeDir, 'composables/emojify'),
+      from: resolve('./runtime/composables/emojify'),
     }, {
       name: 'useUnemojify',
       as: 'useUnemojify',
-      from: resolve(runtimeDir, 'composables/unemojify'),
+      from: resolve('./runtime/composables/unemojify'),
     }]
     addImports(composables)
   },
