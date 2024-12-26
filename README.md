@@ -18,7 +18,7 @@
 1. Add `node-emoji-nuxt` dependency to your project
 
 ```bash
-npx nuxi@latest module add node-emoji
+npx nuxi@latest module add node-emoji-nuxt
 ```
 
 2. Add `node-emoji-nuxt` to the `modules` section of `nuxt.config.ts`
