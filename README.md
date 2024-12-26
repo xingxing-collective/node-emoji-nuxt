@@ -1,84 +1,258 @@
-<!--
-Get your module up and running quickly.
+# Emoji Nuxt Module
 
-Find and replace all on all files (CMD+SHIFT+F):
-- Name: My Module
-- Package name: my-module
-- Description: My new Nuxt module
--->
-
-# My Module
+> Friendly emoji lookups and parsing utilities for Node.js. 💖
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
-My new Nuxt module for doing amazing things.
+[Node Emoji](https://github.com/omnidan/node-emoji) Nuxt Module supporting v3
 
 - [✨ &nbsp;Release Notes](/CHANGELOG.md)
-<!-- - [🏀 Online playground](https://stackblitz.com/github/your-org/my-module?file=playground%2Fapp.vue) -->
+- [🏀 &nbsp;Online playground](https://stackblitz.com/github/xingxing-collective/nuxt-emoji?file=playground%2Fapp.vue)
 <!-- - [📖 &nbsp;Documentation](https://example.com) -->
-
-## Features
-
-<!-- Highlight some of the features your module provide here -->
-- ⛰ &nbsp;Foo
-- 🚠 &nbsp;Bar
-- 🌲 &nbsp;Baz
 
 ## Quick Setup
 
-Install the module to your Nuxt application with one command:
+1. Add `nuxt-emoji` dependency to your project
 
 ```bash
-npx nuxi module add my-module
+npx nuxi@latest module add emoji
 ```
 
-That's it! You can now use My Module in your Nuxt app ✨
+2. Add `nuxt-emoji` to the `modules` section of `nuxt.config.ts`
 
+```ts
+export default defineNuxtConfig({
+  modules: [
+    'nuxt-emoji'
+  ]
+})
+```
 
-## Contribution
+## Basic Usage
 
-<details>
-  <summary>Local development</summary>
-  
-  ```bash
-  # Install dependencies
-  npm install
-  
-  # Generate type stubs
-  npm run dev:prepare
-  
-  # Develop with the playground
-  npm run dev
-  
-  # Build the playground
-  npm run dev:build
-  
-  # Run ESLint
-  npm run lint
-  
-  # Run Vitest
-  npm run test
-  npm run test:watch
-  
-  # Release new version
-  npm run release
-  ```
+You can use the provided `$emoji` to access nuxt-emoji in template.
 
-</details>
+```vue
+<template>
+  <div>
+    {{ $emoji.emojify("I :heart: :coffee:!") }}
+  </div>
+</template>
+```
 
+## Composables
+
+You can use the useEmoji,useEmojify and useUnemojify composable to access nuxt-emoji anywhere.
+
+```ts
+const emoji = useEmoji()
+emoji.emojify("I :heart: :coffee:!") // 'I ❤️ ☕️!'
+// or use the useEmojify composable
+
+emoji.unemojify('The 🦄 is a fictitious animal.') // 'The :unicorn: is a fictitious animal.'
+// or use the useUnemojify composable
+```
+## API
+
+### emoji.emojify(input, options?)
+
+Parse all markdown-encoded emojis in a string.
+
+Parameters:
+
+1. **`input`** (`string`): The input string containing the markdown-encoding emojis.
+1. **`options`** _(optional)_:
+   - **`fallback`** (`string`; default: `""`): The string to fallback to if an emoji was not found.
+   - **`format`** (`() => (emoji: string, part: string, string: string) => string`; default: `value => value`): Add a middleware layer to modify each matched emoji after parsing.
+
+```ts
+const emoji = useEmoji()
+
+console.log(emoji.emojify('The :unicorn: is a fictitious animal.'))
+// 'The 🦄 is a fictitious animal.'
+```
+
+### emoji.find(emoji)
+
+Get the name and character of an emoji.
+
+Parameters:
+
+1. **`emoji`** (`string`): The emoji to get the data of.
+
+```ts
+const emoji = useEmoji()
+
+console.log(emoji.find('🦄'))
+// { name: 'unicorn', emoji: '🦄' }
+```
+
+### emoji.get(name)
+
+Get an emoji from an emoji name.
+
+Parameters:
+
+1. **`name`** (`string`): The name of the emoji to get.
+
+```ts
+const emoji = useEmoji()
+
+console.log(emoji.get('unicorn'))
+// '🦄'
+```
+
+### emoji.has(emoji)
+
+Check if this library supports a specific emoji.
+
+Parameters:
+
+1. **`emoji`** (`string`): The emoji to check.
+
+```ts
+const emoji = useEmoji()
+
+console.log(emoji.has('🦄'))
+// true
+```
+
+### emoji.random()
+
+Get a random emoji.
+
+```ts
+const emoji = useEmoji()
+
+console.log(emoji.random())
+// { name: 'unicorn', emoji: '🦄' }
+```
+
+### emoji.replace(input, replacement)
+
+Replace the emojis in a string.
+
+Parameters:
+
+- **`input`** (`string`): The input string.
+- **`replacement`** (`string | (emoji: string, index: number, string: string) => string`): The character to replace the emoji with.
+  Can be either a string or a callback that returns a string.
+
+```ts
+const emoji = useEmoji()
+
+console.log(emoji.replace('The 🦄 is a fictitious animal.', 'unicorn'))
+// 'The unicorn is a fictitious animal.'
+```
+
+### emoji.search(keyword)
+
+Search for emojis containing the provided name in their name.
+
+Parameters:
+
+1. **`keyword`** (`string`): The keyword to search for.
+
+```ts
+const emoji = useEmoji()
+
+console.log(emoji.search('honey'))
+// [ { name: 'honeybee', emoji: '🐝' }, { name: 'honey_pot', emoji: '🍯' } ]
+```
+
+### emoji.strip(input, options?)
+
+Remove all of the emojis from a string.
+
+Parameters:
+
+1. **`input`** (`string`): The input string to strip the emojis from.
+1. **`options`** _(optional)_:
+
+   - **`preserveSpaces`** (`boolean`): Whether to keep the extra space after a stripped emoji.
+
+```ts
+const emoji = useEmoji()
+
+console.log(emoji.strip('🦄 The unicorn is a fictitious animal.'))
+// 'The unicorn is a fictitious animal.'
+
+console.log(
+  emoji.strip('🦄 The unicorn is a fictitious animal.', {
+    preserveSpaces: true,
+  }),
+)
+// ' The unicorn is a fictitious animal.'
+```
+
+### emoji.unemojify(input)
+
+Convert all emojis in a string to their markdown-encoded counterparts.
+
+Parameters:
+
+1. **`input`** (`string`): The input string containing the emojis.
+
+```ts
+const emoji = useEmoji()
+
+console.log(emoji.unemojify('The 🦄 is a fictitious animal.'))
+// 'The :unicorn: is a fictitious animal.'
+```
+
+### emoji.which(emoji, options?)
+
+Get an emoji name from an emoji.
+
+Parameters:
+
+1. **`emoji`** (`string`): The emoji to get the name of.
+1. **`options`** _(optional)_:
+   - **`markdown`** (`boolean`; default: `false`): Whether to return a `":emoji:"` string instead of `"emoji"`
+
+```ts
+const emoji = useEmoji()
+
+console.log(emoji.which('🦄'))
+// 'unicorn'
+```
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Generate type stubs
+npm run dev:prepare
+
+# Develop with the playground
+npm run dev
+
+# Build the playground
+npm run dev:build
+
+# Run ESLint
+npm run lint
+
+# Run Vitest
+npm run test
+npm run test:watch
+
+# Release new version
+npm run release
+```
 
 <!-- Badges -->
-[npm-version-src]: https://img.shields.io/npm/v/my-module/latest.svg?style=flat&colorA=020420&colorB=00DC82
-[npm-version-href]: https://npmjs.com/package/my-module
 
-[npm-downloads-src]: https://img.shields.io/npm/dm/my-module.svg?style=flat&colorA=020420&colorB=00DC82
-[npm-downloads-href]: https://npm.chart.dev/my-module
-
-[license-src]: https://img.shields.io/npm/l/my-module.svg?style=flat&colorA=020420&colorB=00DC82
-[license-href]: https://npmjs.com/package/my-module
-
-[nuxt-src]: https://img.shields.io/badge/Nuxt-020420?logo=nuxt.js
+[npm-version-src]: https://img.shields.io/npm/v/nuxt-emoji/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
+[npm-version-href]: https://npmjs.com/package/nuxt-emoji
+[npm-downloads-src]: https://img.shields.io/npm/dm/nuxt-emoji.svg?style=flat&colorA=18181B&colorB=28CF8D
+[npm-downloads-href]: https://npmjs.com/package/nuxt-emoji
+[license-src]: https://img.shields.io/npm/l/nuxt-emoji.svg?style=flat&colorA=18181B&colorB=28CF8D
+[license-href]: https://npmjs.com/package/nuxt-emoji
+[nuxt-src]: https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js
 [nuxt-href]: https://nuxt.com

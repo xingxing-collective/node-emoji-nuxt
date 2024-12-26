@@ -1,9 +1,21 @@
 {
-  "name": "my-module",
+  "name": "nuxt-emoji",
   "version": "1.0.0",
-  "description": "My new Nuxt module",
-  "repository": "your-org/my-module",
+  "description": "Friendly emoji lookups and parsing utilities for nuxt module. 💖",
+  "repository": "xingxing-collective/nuxt-emoji",
   "license": "MIT",
+  "keywords": [
+    "emoji",
+    "node-emoji",
+    "emoticons",
+    "emoticon",
+    "emojis",
+    "smiley",
+    "smileys",
+    "smilies",
+    "nuxt",
+    "nuxt-module"
+  ],
   "type": "module",
   "exports": {
     ".": {
