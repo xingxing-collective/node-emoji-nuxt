@@ -9,7 +9,7 @@ export default defineNuxtModule({
     const { resolve } = createResolver(import.meta.url)
 
     addPlugin({
-      src: resolve('./runtime/plugins'),
+      src: resolve('./runtime/plugin'),
     })
 
     nuxt.options.alias['#emoji'] = resolve('./runtime')
