@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v1.2.1
+
+[compare changes](https://github.com/xingxing-collective/node-emoji-nuxt/compare/v1.2.0...v1.2.1)
+
+### 🩹 Fixes
+
+- Update plugin path ([49fcb16](https://github.com/xingxing-collective/node-emoji-nuxt/commit/49fcb16))
+- Plugin path ([a4db7b9](https://github.com/xingxing-collective/node-emoji-nuxt/commit/a4db7b9))
+
+### ❤️ Contributors
+
+- Xingxingmofashu <xingxingmofashu@outlook.com>
+
 ## v1.2.0
 
 

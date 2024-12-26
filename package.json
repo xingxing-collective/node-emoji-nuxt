@@ -1,6 +1,6 @@
 {
   "name": "node-emoji-nuxt",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Friendly emoji lookups and parsing utilities for nuxt module. 💖",
   "repository": "xingxing-collective/node-emoji-nuxt",
   "license": "MIT",
