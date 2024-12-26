@@ -2,8 +2,8 @@ import { defineNuxtModule, addPlugin, createResolver, addImports } from '@nuxt/k
 
 export default defineNuxtModule({
   meta: {
-    name: 'nuxt-emoji',
-    configKey: 'emoji',
+    name: 'node-emoji-nuxt',
+    configKey: 'node-emoji',
   },
   setup(_options, nuxt) {
     const { resolve } = createResolver(import.meta.url)

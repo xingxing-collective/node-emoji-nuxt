@@ -10,30 +10,30 @@
 [Node Emoji](https://github.com/omnidan/node-emoji) Nuxt Module supporting v3
 
 - [✨ &nbsp;Release Notes](/CHANGELOG.md)
-- [🏀 &nbsp;Online playground](https://stackblitz.com/github/xingxing-collective/nuxt-emoji?file=playground%2Fapp.vue)
+- [🏀 &nbsp;Online playground](https://stackblitz.com/github/xingxing-collective/node-emoji-nuxt?file=playground%2Fapp.vue)
 <!-- - [📖 &nbsp;Documentation](https://example.com) -->
 
 ## Quick Setup
 
-1. Add `nuxt-emoji` dependency to your project
+1. Add `node-emoji-nuxt` dependency to your project
 
 ```bash
-npx nuxi@latest module add emoji
+npx nuxi@latest module add node-emoji
 ```
 
-2. Add `nuxt-emoji` to the `modules` section of `nuxt.config.ts`
+2. Add `node-emoji-nuxt` to the `modules` section of `nuxt.config.ts`
 
 ```ts
 export default defineNuxtConfig({
   modules: [
-    'nuxt-emoji'
+    'node-emoji-nuxt'
   ]
 })
 ```
 
 ## Basic Usage
 
-You can use the provided `$emoji` to access nuxt-emoji in template.
+You can use the provided `$emoji` to access node-emoji-nuxt in template.
 
 ```vue
 <template>
@@ -45,7 +45,7 @@ You can use the provided `$emoji` to access nuxt-emoji in template.
 
 ## Composables
 
-You can use the useEmoji,useEmojify and useUnemojify composable to access nuxt-emoji anywhere.
+You can use the useEmoji,useEmojify and useUnemojify composable to access node-emoji-nuxt anywhere.
 
 ```ts
 const emoji = useEmoji()
@@ -248,11 +248,11 @@ npm run release
 
 <!-- Badges -->
 
-[npm-version-src]: https://img.shields.io/npm/v/nuxt-emoji/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
-[npm-version-href]: https://npmjs.com/package/nuxt-emoji
-[npm-downloads-src]: https://img.shields.io/npm/dm/nuxt-emoji.svg?style=flat&colorA=18181B&colorB=28CF8D
-[npm-downloads-href]: https://npmjs.com/package/nuxt-emoji
-[license-src]: https://img.shields.io/npm/l/nuxt-emoji.svg?style=flat&colorA=18181B&colorB=28CF8D
-[license-href]: https://npmjs.com/package/nuxt-emoji
+[npm-version-src]: https://img.shields.io/npm/v/node-emoji-nuxt/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
+[npm-version-href]: https://npmjs.com/package/node-emoji-nuxt
+[npm-downloads-src]: https://img.shields.io/npm/dm/node-emoji-nuxt.svg?style=flat&colorA=18181B&colorB=28CF8D
+[npm-downloads-href]: https://npmjs.com/package/node-emoji-nuxt
+[license-src]: https://img.shields.io/npm/l/node-emoji-nuxt.svg?style=flat&colorA=18181B&colorB=28CF8D
+[license-href]: https://npmjs.com/package/node-emoji-nuxt
 [nuxt-src]: https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js
 [nuxt-href]: https://nuxt.com
